@@ -1,6 +1,5 @@
 .section {
   margin: 0;
-  padding: 90px 70px;
   color: #fff;
 }
 
@@ -8,9 +7,7 @@
   margin: 0;
   padding: 0 0 23px;
   font-size: 22px;
-  font-style: normal;
   font-weight: 400;
-  line-height: normal;
   letter-spacing: -0.88px;
   border-bottom: 1px solid rgba(218, 218, 218, 1);
 }

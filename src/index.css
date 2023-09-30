@@ -2,6 +2,8 @@
 @import url('./vendor/normalize.css');
 
 body {
+  background-color: #202020;
   margin: 0;
   font-family: 'Inter', Arial, sans-serif;
 }
+/* * { outline: 1px solid red; } */

@@ -8,8 +8,8 @@ const Profile = () => {
   return (
     <>
       <Header loggedIn={true} />
-      <section className="profile">
-        <h2 className="profile__title">{`Привет, ${profileData.name}!`}</h2>
+      <main className="profile">
+        <h1 className="profile__title">{`Привет, ${profileData.name}!`}</h1>
         <form className="profile__form">
           <label className="profile__input">
             <p className="profile__input-title">Имя</p>
@@ -36,7 +36,7 @@ const Profile = () => {
           <Link to="/" className="profile__link">Редактировать</Link>
           <Link to="/" className="profile__link profile__link_color">Выйти из аккаунта</Link>
         </div>
-      </section>
+      </main>
     </>
   );
 };

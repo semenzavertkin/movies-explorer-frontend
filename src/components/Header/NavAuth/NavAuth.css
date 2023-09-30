@@ -6,6 +6,9 @@
   gap: 30px;
   list-style: none;
 }
+.nav-auth__list-item {
+  display: flex;
+}
 .nav-auth__link {
   text-decoration: none;
   font-size: 12px;

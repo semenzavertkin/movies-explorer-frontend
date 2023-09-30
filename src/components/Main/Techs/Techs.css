@@ -1,5 +1,6 @@
 .techs {
-  background-color: rgba(39, 39, 39, 1);
+  background-color: #272727;;
+  padding: 100px 70px;
 }
 .techs__conteiner {
   display: flex;
@@ -10,7 +11,6 @@
   margin: 0;
   padding: 90px 0 26px;
   font-size: 50px;
-  font-style: normal;
   font-weight: 400;
   line-height: 116%;
   letter-spacing: -2px;
@@ -21,7 +21,6 @@
   max-width: 460px;
   text-align: center;
   font-size: 14px;
-  font-style: normal;
   font-weight: 400;
   line-height: 142.857%;
   letter-spacing: -0.56px;
@@ -30,25 +29,27 @@
   list-style: none;
   display: grid;
   grid-template-columns: repeat(auto-fit, 90px);
-  width: 100%;
   gap: 10px;
   justify-content: center;
-  margin: 83px 0 90px;
+  margin: 100px 0 0;
   padding: 0;
-  max-width: 690px;
+  width: 100%;
 }
 .techs__list-item {
   background-color: rgba(48, 48, 48, 1);
   border-radius: 10px;
-  max-width: 84px;
+  text-align: center;
   margin: 0;
   padding: 21px 0;
-  font-size: 12px;
-  text-align: center;
-  letter-spacing: -0.48px;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: -0.56px;
 }
 
 @media screen and (max-width: 768px) {
+  .techs {
+    padding: 90px 60px;
+  }
   .techs__title {
     padding: 80px 0 22px;
   }
@@ -59,10 +60,18 @@
   }
   .techs__list {
     grid-template-columns: repeat(auto-fit, 84px);
+    margin: 83px 0 90px;
+  }
+  .techs__list-item {
+    font-size: 12px;
+    letter-spacing: -0.48px;
   }
 }
 
 @media screen and (max-width: 480px) {
+  .techs {
+    padding: 70px 18px;
+  }
   .techs__title {
     padding: 60px 0 24px;
     font-size: 30px;
@@ -74,5 +83,6 @@
   }
   .techs__list {
     margin: 50px 0 70px;
+    max-width: 200px;
   }
 }

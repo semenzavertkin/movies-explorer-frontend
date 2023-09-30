@@ -2,21 +2,21 @@ import './SearchForm.css';
 
 const SearchForm = () => {
   return (
-    <section className="search">
-      <form className="search__form">
+    <form className="search">
+      <div className="search__form">
         <input className="search__input" id='search-film' placeholder="Фильм" type="text" required />
         <button type="submit" className="search__button"></button>
-      </form>
+      </div>
 
 
       <div className="search__toggle">
         <label className="search__tumbler">
           <input className="search__checkbox" id='movies-filter' type="checkbox" />
-          <div class="search__checkmark"></div>
+          <span class="search__checkmark"></span>
         </label>
         <p className="search__films">Короткометражки</p>
       </div>
-    </section>
+    </form>
   );
 };
 

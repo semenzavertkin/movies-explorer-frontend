@@ -1,6 +1,6 @@
 import './Form.css'
 import { Link } from 'react-router-dom'
-import logo from '../../images/logo.png';
+import logo from '../../images/logo.svg';
 
 const AuthForm = (props) => {
   return (
@@ -9,7 +9,7 @@ const AuthForm = (props) => {
         <Link to="/" className="form__link">
           <img className="form__logo" src={logo} alt="Логотип"></img>
         </Link>
-        <h2 className="form__title">{props.title}</h2>
+        <h1 className="form__title">{props.title}</h1>
         <form className="form__inputs">
           {props.children}
           <button className="form__submit-btn" type="submit" aria-label={props.submit}>

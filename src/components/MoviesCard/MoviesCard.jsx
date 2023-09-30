@@ -15,12 +15,12 @@ const MoviesCard = ({ card }) => {
       {location.pathname === "/saved-movies" ? (
         <button
           type="button"
-          className="card__btn card__btn-delete" />
+          className="card-btn card-btn_delete" />
       ) : (
         <button
           type="button"
           onClick={handleFavoriteToggle}
-          className={`card__btn card__btn-like${isFavorite ? "_active" : "_inactive"}`}
+          className={`card-btn card-btn${isFavorite ? "_active" : "_inactive"}`}
         />
       )}
       <div className="card__info">

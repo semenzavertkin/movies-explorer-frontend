@@ -1,3 +1,6 @@
+.about-me {
+  padding: 115px 70px 100px;
+}
 .about-me__profile {
   padding: 66px 0 0;
   display: flex;
@@ -48,6 +51,9 @@
 }
 
 @media screen and (max-width: 768px) {
+  .about-me {
+    padding: 90px 50px;
+  }
   .about-me__name {
     font-size: 40px;
     line-height: 100%;
@@ -70,6 +76,9 @@
 }
 
 @media screen and (max-width: 600px) {
+  .about-me {
+    padding: 70px 14px;
+  }
   .about-me__profile {
     padding: 60px 0 0;
     display: flex;
@@ -78,7 +87,7 @@
     gap: 40px;
   }
   .about-me__avatar {
-    width: 100%;
+    width: 292px;
   }
   .about-me__name {
     font-size: 30px;

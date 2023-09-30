@@ -9,7 +9,7 @@ import Footer from '../Footer/Footer';
 const Movies = () => {
   return (
     <>
-      <Header loggedIn={false} />
+      <Header loggedIn={true} />
       <main className="movies">
         <SearchForm />
         <MoviesCardList cards={cards} />

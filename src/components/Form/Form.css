@@ -1,10 +1,10 @@
 .form {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   height: 100vh;
-  margin: auto 0;
+  
+}
+.form__container {
+  margin: auto;
 }
 .form__link {
   display: flex;
@@ -72,6 +72,7 @@
   color: #fff;
   font-size: 14px;
   font-weight: 500;
+  margin-top: 70px;
 }
 .form__submit-btn:hover {
   opacity: 0.6;
@@ -114,14 +115,16 @@
   .form__title {
     padding: 50px 0 80px;
   }
+  .form__inputs { 
+    width: 260px;
+  }
   .form__submit-btn {
-    position: absolute;
     width: 100%;
     left: 0;
     bottom: 29px;
   }
   .form__text {
-    position: absolute;
+    padding: 14px 0 0;
     bottom: 0;
   }
 }
