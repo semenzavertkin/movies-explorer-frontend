@@ -1,25 +1,56 @@
 import './Profile.css';
-import Header from '../Header/Header';
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
+import useValidation from '../../hooks/useValidation';
+import { useContext, useEffect, useState } from 'react';
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
-const Profile = () => {
-  const [profileData, setProfileData] = useState({ name: 'Виталий', email: 'pochta@yandex.ru' })
+const Profile = (props) => {
+  const currentUser = useContext(CurrentUserContext);
+  const name = currentUser.currentUser.name;
+  const email = currentUser.currentUser.email;
+  const { setIsValid, values, handleChange, isValid } = useValidation({
+    name: name,
+    email: email,
+  });
+  const [isSame, setIsSame] = useState(true);
+
+  useEffect(() => {
+    setIsValid(true);
+  }, [currentUser, setIsValid]);
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    props.onEditProfile(values);
+  }
+
+  useEffect(() => {
+    if (name !== values.name || email !== values.email) {
+      setIsSame(false);
+    } else {
+      setIsSame(true);
+    }
+  }, [name, email, values.name, values.email]);
+
+
   return (
     <>
-      <Header loggedIn={true} />
       <main className="profile">
-        <h1 className="profile__title">{`Привет, ${profileData.name}!`}</h1>
-        <form className="profile__form">
+        <h1 className="profile__title">Привет {currentUser.currentUser.name}!</h1>
+        <form className="profile__form" onSubmit={handleSubmit}>
           <label className="profile__input">
             <p className="profile__input-title">Имя</p>
             <input
+              id="name"
+              name="name"
               type="text"
               className="profile__field"
               placeholder="Ваше имя..."
-              value={profileData.name}
-              onChange={e => { setProfileData(state => ({ ...state, name: e.target.value })) }}
-              required />
+              minLength={2}
+              maxLength={40}
+              value={values.name}
+              onChange={handleChange}
+              required
+            />
           </label>
           <label className="profile__input">
             <p className="profile__input-title">E-mail</p>
@@ -27,16 +58,22 @@ const Profile = () => {
               type="email"
               className="profile__field"
               placeholder="Ваша почта..."
-              value={profileData.email}
-              onChange={e => { setProfileData(state => ({ ...state, mail: e.target.value })) }}
-              required />
+              value={values.email}
+              onChange={handleChange}
+              required
+            />
           </label>
+          <button
+            className={`profile__btn  ${isSame || !isValid ? 'profile__btn_disabled' : ''}`}
+            disabled={isSame || !isValid}
+            type='submit'
+            aria-label='Редактировать профиль'
+          >
+            Редактировать
+          </button>
         </form>
-        <div className="profile__link-container">
-          <Link to="/" className="profile__link">Редактировать</Link>
-          <Link to="/" className="profile__link profile__link_color">Выйти из аккаунта</Link>
-        </div>
-      </main>
+        <Link to="/" className="profile__link profile__link" onClick={props.onLogout}>Выйти из аккаунта</Link>
+      </main >
     </>
   );
 };

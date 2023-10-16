@@ -29,7 +29,6 @@
   background: url(../../images/delete.svg) center no-repeat;
 }
 .card-btn_active {
-  display: flex;
   width: 21px;
   height: 21px;
   background: url(../../images/active.svg) center no-repeat;

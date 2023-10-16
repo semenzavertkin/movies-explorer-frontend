@@ -9,6 +9,20 @@
   margin: 0;
 }
 
+.cards__more-btn {
+  background-color: transparent;
+  width: 320px;
+  padding: 11px 0 9px;
+  color: #fff;
+  font-family: 'Inter', Arial, sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 14.52px;
+  border-radius: 6px;
+  border: 1px solid #424242;
+  cursor: pointer;
+}
+
 @media screen and (max-width: 768px) {
   .cards__list {
     grid-template-columns: repeat(auto-fit, 339px);
@@ -19,5 +33,8 @@
   .cards__list {
     padding: 40px 0 0;
     grid-template-columns: repeat(auto-fit, 300px);
+  }
+  .cards__more-btn {
+    width: 240px;
   }
 }
