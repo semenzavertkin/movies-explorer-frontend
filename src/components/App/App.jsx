@@ -13,6 +13,7 @@ import Register from '../Register/Register';
 import Login from '../Login/Login';
 import NotFound from '../NotFound/NotFound';
 import Footer from '../Footer/Footer';
+import InfoTooltip from "../InfoTooltip/InfoTooltip";
 
 
 
@@ -24,6 +25,8 @@ const App = () => {
   const [savedMovies, setSavedMovies] = useState([]);
   const hideForHeader = ['/sign-in', '/sign-up', '/not-found'];
   const hideForFooter = ['/sign-in', '/sign-up', '/profile', '/not-found'];
+  const [isInfoTooltipPopupOpen, setIsInfoTooltipPopupOpen] = useState(false);
+  const [err, setErr] = useState(false);
 
 
   useEffect(() => {
@@ -50,11 +53,15 @@ const App = () => {
     mainApi
       .register(name, email, password,)
       .then((res) => {
+        setIsInfoTooltipPopupOpen(true);
+        setErr(false);
         handleLogin(email, password);
       })
-      .catch((err) =>
-        console.log(err)
-      );
+      .catch((err) => {
+        setIsInfoTooltipPopupOpen(true);
+        setErr(true);
+        console.log(err);
+      });
   }
 
   function handleLogin(email, password) {
@@ -74,6 +81,8 @@ const App = () => {
         }
       })
       .catch((err) => {
+        setIsInfoTooltipPopupOpen(true);
+        setErr(true);
         console.log(err);
       });
   };
@@ -124,8 +133,6 @@ const App = () => {
           .catch((err) => {
             console.error('Ошибка при удалении фильма:', err);
           });
-      } else {
-        console.error('Не удалось найти фильм для удаления.');
       }
     }
   };
@@ -140,6 +147,9 @@ const App = () => {
       .catch((err) => {
         console.error('Ошибка при удалении фильма: ', err);
       });
+  }
+  function closeAllPopups() {
+    setIsInfoTooltipPopupOpen(false);
   }
 
 
@@ -195,6 +205,11 @@ const App = () => {
           <Route path='*' element={<NotFound />} />
         </Routes>
         {!hideForFooter.includes(location.pathname) && <Footer />}
+        <InfoTooltip
+          isOpen={isInfoTooltipPopupOpen}
+          onClose={closeAllPopups}
+          isErr={err}
+        />
       </div>
     </CurrentUserContext.Provider>
   );
