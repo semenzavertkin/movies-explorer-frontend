@@ -106,10 +106,6 @@ const App = () => {
 
   function handleSaveMovie(movie) {
     const isSaved = savedMovies.some((item) => item.movieId === movie.id);
-    if (savedMovies.some(item => item === undefined)) {
-      console.error("В массиве savedMovies есть undefined элементы!");
-      return;
-    }
     if (!isSaved) {
       mainApi.saveMovie(movie)
         .then((savedMovie) => {
