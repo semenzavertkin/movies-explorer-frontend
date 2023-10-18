@@ -1,0 +1,103 @@
+.search {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+  padding-bottom: 40px;
+  margin: 0 auto 10px;
+  width: 100%;
+  border-bottom: 1px solid rgba(66, 66, 66, 1);
+}
+.search__form {
+  display: grid;
+  grid-template-columns: 1fr 44px;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding-top: 80px;
+}
+.search__input {
+  width: auto;
+  padding: 16px 20px;
+  border: none;
+  border-radius: 8px;
+  background-color: rgba(47, 47, 47, 1);
+}
+.search__input::placeholder {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 128.571%;
+  color: #8B8B8B;
+}
+.search__input:focus {
+  outline: none;
+  color: #8B8B8B;
+}
+.search__button {
+  cursor: pointer;
+  border: none;
+  padding: 0;
+  width: 44px;
+  height: 44px;
+  background: transparent url('../../../images/find.svg') center center / cover no-repeat;
+}
+.search__button:hover {
+  opacity: 0.6;
+  transition: opacity 0.3s, transform 0.2s;
+}
+.search__tumbler {
+  display: flex;
+  position: relative;
+  cursor: pointer;
+}
+.search__checkbox {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+.search__films {
+  color: #fff;
+  margin: 0;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 150%;
+  padding-left: 46px;
+
+}
+.search__checkbox:checked ~ .search__checkmark {
+  background-color: rgba(61, 220, 132, 1);
+}
+.search__checkbox:checked ~ .search__checkmark:after {
+  left: 21px;
+}
+.search__tumbler .search__checkmark {
+  position: absolute;
+  top: 2px;
+  left: 0;
+  height: 14px;
+  width: 34px;
+  background-color: #eee;
+  transition: background-color 0.25s ease;
+  border-radius: 10px;
+}
+.search__tumbler .search__checkmark:after {
+  content: "";
+  position: absolute;
+  left: 2px;
+  top: 2px;
+  width: 10px;
+  height: 10px;
+  display: block;
+  background-color: #fff;
+  border-radius: 50%;
+  transition: left 0.25s ease;
+}
+.search__checkmark:hover {
+  opacity: 0.6;
+  transition: opacity 0.3s, transform 0.2s;
+}
+.search-form__error {
+  color: #ee3465;
+}
