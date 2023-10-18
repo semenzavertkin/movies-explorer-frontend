@@ -98,3 +98,6 @@
   opacity: 0.6;
   transition: opacity 0.3s, transform 0.2s;
 }
+.search-form__error {
+  color: #ee3465;
+}

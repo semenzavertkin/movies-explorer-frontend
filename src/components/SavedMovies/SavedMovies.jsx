@@ -5,12 +5,19 @@ import { mainApi } from '../../utils/MainApi';
 import { useEffect, useState } from 'react'
 
 const SavedMovies = (props) => {
-  const [movies, setMovies] = useState([]);
-  const [hideCard, setHideCard] = useState(false)
+  const [movies, setMovies] = useState(props.savedMovies);
   const [initialValue, setInitialValue] = useState('');
   const [shortActive, setShortActive] = useState(false);
+  const [loading, setLoading] = useState(false);
 
-  const handleSearch = (searchString) => setInitialValue(searchString);
+  const handleSearch = (searchString) => {
+    setInitialValue(searchString);
+    const result = movies(props.savedMovies, searchString, setShortActive);
+    setMovies(result);
+  }
+  useEffect(() => {
+    setMovies(props.savedMovies);
+  }, [props.savedMovies])
   const handleShortFilms = () => setShortActive(!shortActive)
 
   const searchMovieFilter = (allMovies, initialValueStr, shortActive) => {
@@ -29,13 +36,15 @@ const SavedMovies = (props) => {
   useEffect(() => {
     mainApi.getMyMovies()
       .then((res) => {
-        setHideCard(false)
+        setLoading(true);
         setMovies(searchMovieFilter(res, initialValue, shortActive));
+        setLoading(false);
       })
       .catch((err) => {
+        setLoading(false);
         console.log(err)
       })
-  }, [initialValue, shortActive, hideCard])
+  }, [initialValue, shortActive])
   return (
     <>
       <main className="movies">
@@ -50,6 +59,7 @@ const SavedMovies = (props) => {
           isSavedMoviePage={true}
           onDelete={props.onDelete}
           savedMovies={props.savedMovies}
+          loading={loading}
         />
       </main>
     </>

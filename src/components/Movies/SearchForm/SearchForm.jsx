@@ -19,10 +19,11 @@ const SearchForm = (props) => {
     setError(null);
     props.onSearch(inputValue);
   };
+
   return (
     <form className="search" onSubmit={handleSubmit}>
       <div className="search__form">
-        <input className="search__input" id='search-film' placeholder="Фильм" type="text" required
+        <input className="search__input" id='search-film' placeholder="Фильм" type="text"
           value={inputValue}
           onChange={handleInputChange} />
         <button type="submit" className="search__button"></button>
@@ -38,7 +39,7 @@ const SearchForm = (props) => {
         </label>
         <p className="search__films">Короткометражки</p>
       </div>
-      {error && <p className='search__error'>{error}</p>}
+      {error && <p className='search-form__error'>{error}</p>}
     </form>
   );
 };

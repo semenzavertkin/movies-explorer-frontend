@@ -9,6 +9,7 @@ const Movies = (props) => {
   const [movies, setMovies] = useState([]);
   const [initialValue, setInitialValue] = useState(localStorage.getItem('initialValue') === null ? '' : localStorage.getItem('initialValue'));
   const [shortActive, setShortActive] = useState(JSON.parse(localStorage.getItem('shortActive')) === null ? false : JSON.parse(localStorage.getItem('shortActive')));
+  const [loading, setLoading] = useState(false);
 
   const handleSearch = (searchString) => setInitialValue(searchString);
   const setChecked = () => setShortActive(!shortActive)
@@ -29,14 +30,17 @@ const Movies = (props) => {
   useEffect(() => {
     localStorage.setItem('shortActive', shortActive)
     if (initialValue) {
+      setLoading(true)
       localStorage.setItem('initialValue', initialValue)
       moviesApi.getMovies()
         .then((res) => {
           setMovies(searchMovieFilter(res, initialValue, shortActive));
+          setLoading(false);
         })
         .catch(err => console.log(err))
     }
   }, [initialValue, shortActive]);
+  console.log(initialValue)
   return (
     <>
       <main className="movies">
@@ -50,6 +54,7 @@ const Movies = (props) => {
           movies={movies}
           onSave={props.onSave}
           savedMovies={props.savedMovies}
+          loading={loading}
         />
       </main>
     </>

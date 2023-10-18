@@ -29,6 +29,7 @@
   background: url(../../images/delete.svg) center no-repeat;
 }
 .card-btn_active {
+  display: flex;
   width: 21px;
   height: 21px;
   background: url(../../images/active.svg) center no-repeat;
@@ -73,6 +74,11 @@
   background: #2F2F2F;
   align-items: center;
   justify-content: center;
+}
+@media screen and (max-width: 888px) {
+  .card-btn {
+    display: flex;
+  }
 }
 @media screen and (max-width: 768px) {
   .card {

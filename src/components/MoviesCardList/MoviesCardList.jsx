@@ -1,6 +1,8 @@
 import './MoviesCardList.css';
 import MoviesCard from '../MoviesCard/MoviesCard';
 import { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
+import Preloader from '../Movies/Preloader/Preloader'
 
 import {
   SCREEN_1280,
@@ -15,12 +17,14 @@ import {
 
 const MoviesCardList = (props) => {
   const [moviesToShow, setMoviesToShow] = useState([]);
+  const location = useLocation();
 
   useEffect(() => {
     const handleResize = () => {
       const currentScreen = window.innerWidth;
       let count;
-      if (currentScreen >= SCREEN_1280) count = CARDS_1280;
+      if (location.pathname !== '/movies') count = (props.movies.length);
+      else if (currentScreen >= SCREEN_1280) count = CARDS_1280;
       else if (currentScreen >= SCREEN_480) count = CARDS_768;
       else count = CARDS_480;
       setMoviesToShow(props.movies.slice(0, count));
@@ -34,7 +38,7 @@ const MoviesCardList = (props) => {
       clearTimeout(resizeTimeout);
       window.removeEventListener('resize', handleResize);
     };
-  }, [props.movies]);
+  }, [location.pathname, props.movies]);
 
   const handleMore = () => {
     const currentCount = moviesToShow.length;
@@ -53,15 +57,20 @@ const MoviesCardList = (props) => {
   return (
     <section className="cards">
       <ul className="cards__list">
-        {moviesToShow.map((movie) => (
-          <MoviesCard
-            key={movie.id || movie.movieId}
-            movie={movie}
-            onSave={props.onSave}
-            onDelete={props.onDelete}
-            savedMovies={props.savedMovies}
-          />
-        ))}
+        {
+          props.loading ? <Preloader /> :
+            props.movies.length === 0 ? <h1 className="cards__list_err">Ничего не найдено</h1> :
+              moviesToShow.map((movie) => (
+                <MoviesCard
+                  key={movie.id || movie.movieId}
+                  movie={movie}
+                  onSave={props.onSave}
+                  onDelete={props.onDelete}
+                  savedMovies={props.savedMovies}
+                />
+              ))
+
+        }
       </ul>
       {moviesToShow.length < props.movies.length && (
         <button className='cards__more-btn' type='button' onClick={handleMore}>

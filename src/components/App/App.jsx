@@ -23,10 +23,11 @@ const App = () => {
   const [loggedIn, setLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
   const [savedMovies, setSavedMovies] = useState([]);
-  const hideForHeader = ['/sign-in', '/sign-up', '/not-found'];
-  const hideForFooter = ['/sign-in', '/sign-up', '/profile', '/not-found'];
+  const hideForHeader = ['/signin', '/signup', '/not-found'];
+  const hideForFooter = ['/signin', '/signup', '/profile', '/not-found'];
   const [isInfoTooltipPopupOpen, setIsInfoTooltipPopupOpen] = useState(false);
   const [err, setErr] = useState(false);
+
 
 
   useEffect(() => {
@@ -44,7 +45,7 @@ const App = () => {
   }, [navigate])
 
   useEffect(() => {
-    if (loggedIn && (location.pathname === '/sign-in' || location.pathname === '/sign-up')) {
+    if (loggedIn && (location.pathname === '/signin' || location.pathname === '/signup')) {
       navigate('/movies');
     }
   }, [loggedIn, location.pathname, navigate]);
@@ -98,10 +99,14 @@ const App = () => {
       .setUserInfo(name, email)
       .then((res) => {
         setCurrentUser(res);
+        setIsInfoTooltipPopupOpen(true);
+        setErr(false);
       })
-      .catch((err) =>
-        console.log(err)
-      );
+      .catch((err) => {
+        setIsInfoTooltipPopupOpen(true);
+        setErr(true);
+        console.log(err);
+      });
   }
 
   function handleSaveMovie(movie) {

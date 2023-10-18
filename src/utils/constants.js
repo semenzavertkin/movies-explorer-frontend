@@ -1,6 +1,6 @@
 export const SCREEN_1280 = 1280;
 export const SCREEN_768 = 768;
-export const SCREEN_480 = 480;
+export const SCREEN_480 = 888;
 
 export const CARDS_1280 = 12;
 export const CARDS_768 = 8;

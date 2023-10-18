@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import isEmail from 'validator/es/lib/isEmail';
 
 function useValidation(keys) {
   const [values, setValues] = useState(keys);
@@ -12,7 +13,16 @@ function useValidation(keys) {
     setValues((values) => ({ ...values, [name]: value }));
     setErrors((errors) => ({ ...errors, [name]: target.validationMessage }));
     setIsValid(target.closest('form').checkValidity());
+  
+    if (name === 'email') {
+      if (!isEmail(value)) {
+        target.setCustomValidity('Некорректый адрес почты.');
+      } else {
+        target.setCustomValidity('');
+      }
+    }
   }
+
 
   function defaultValues(values = {}, errors = {}) {
     setValues(values);
